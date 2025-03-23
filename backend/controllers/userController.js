@@ -257,11 +257,14 @@ const userPublicProfile = asyncHandler(async (req, res, next) => {
 const verifyCheck = asyncHandler(async (req, res, next) => {
   const { id } = req.body;
 
+
   const user = await userModel.findById(id);
 
   if (user) {
     res.status(200).json({
       email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
       isVerified: user.isVerified,
     });
   }

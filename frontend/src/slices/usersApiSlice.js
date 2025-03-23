@@ -73,6 +73,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data
       })
+    }),
+    checkIsVerified: builder.mutation({
+     query:(data) => ({
+      url: `${USERS_URL}/verify-check`,
+      method: "POST",
+      body: data
+     })
     })
   }),
 });
@@ -88,5 +95,6 @@ export const {
   useConfirmEmailMutation,
   useForgotPasswordMutation,
   useConfirmResetPasswordTokenMutation,
-  useResetPasswordMutation
+  useResetPasswordMutation,
+  useCheckIsVerifiedMutation,
 } = usersApiSlice;

@@ -8,7 +8,6 @@ const PrivateRoute = () => {
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.auth);
-  console.log("USER VERIFIED", userInfo)
   const [verified, setVerified] = React.useState(false);
   const [email, setEmail] = React.useState(null);
 
@@ -54,7 +53,7 @@ const PrivateRoute = () => {
     return <Outlet />;
   }
 
-  if (!userInfo.isVerified) {
+  if (!verified) {
     const styles = {
       height: "400px",
       fontSize: "1.3em", // Latest value for font-size takes precedence

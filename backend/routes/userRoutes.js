@@ -14,6 +14,7 @@ import {
   confirmResetPasswordToken,setNewPassword
 } from "../controllers/userController.js";
 import multer from "multer";
+import { checkEmailVerification } from "../middleware/emailVerifyCheckMiddleware.js";
 
 const router = express.Router();
 
@@ -51,7 +52,7 @@ router.post('/verifyemail', protect , verifyEmail)
 router.post("/signin", singin);
 
 router.post("/logout", logout);
-router.post('/verify-Check', verifyCheck)
+router.post('/verify-check', verifyCheck)
 
 // router.route("/profile").get(protect, getUserProfile);
 
