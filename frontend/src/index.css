@@ -1,6 +1,8 @@
 
+@import "tailwindcss";
 @import url("./styles/cssreset.css");
 @import url("./styles/utilities.css");
+
 
 :root {
   --color-blue: #1D3557;

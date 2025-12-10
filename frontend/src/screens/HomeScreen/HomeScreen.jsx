@@ -18,8 +18,8 @@ const HomeScreen = () => {
   return (
     <>
       <Hero />
-      <div className={classNames(" main-2-column space-top-9 Container")}>
-        <div className={Styles.featuredArticles}>
+      <div className=''>
+        <div>
           <FeaturedArticles />
         </div>
         <Sidebar />
