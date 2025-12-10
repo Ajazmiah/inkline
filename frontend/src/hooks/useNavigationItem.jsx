@@ -34,6 +34,10 @@ const useNavigationItem = () => {
       to: "profile/update",
       text: "Edit Account",
     },
+    {
+      text: "Logout",
+      Element: "Button",
+    },
   ];
 
   const pagesNavigation = userInfo?._id
