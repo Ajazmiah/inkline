@@ -20,10 +20,6 @@ const useNavigationItem = () => {
       to: "/",
     },
     {
-      text: "Sign In",
-      to: "/signin",
-    },
-    {
       text: "Sign Up",
       to: "/signup",
     },
@@ -37,10 +33,6 @@ const useNavigationItem = () => {
     {
       to: "profile/update",
       text: "Edit Account",
-    },
-    {
-      text: "Logout",
-      Element: "Button",
     },
   ];
 
