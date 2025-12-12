@@ -19,7 +19,7 @@ function FeaturedArticles() {
   const [posts, setPosts] = useState([]);
   const [leadPost, setLeadPost] = useState(null);
   const [noMore, setNoMore] = useState(false);
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(6);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -70,7 +70,7 @@ function FeaturedArticles() {
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
         
         {/* LEFT COLUMN: Lead Article (Takes up 8/12 columns on desktop) */}
-        <div className="lg:col-span-8">
+        <div className="lg:col-span-12">
           {leadPost && (
             <div className="border-b border-gray-200 pb-8 lg:border-none lg:pb-0">
                {/* This is the big article component we built previously */}
@@ -80,7 +80,7 @@ function FeaturedArticles() {
         </div>
 
         {/* RIGHT COLUMN: Sidebar List (Takes up 4/12 columns on desktop) */}
-        <div className="flex flex-col gap-8 lg:col-span-4 lg:border-l lg:border-gray-100 lg:pl-12">
+        <div className="flex flex-col gap-8 lg:col-span-12 lg:border-l lg:border-gray-100 lg:pl-12">
           
           <div className="border-b border-gray-900 pb-2">
             <h3 className="text-sm font-bold uppercase tracking-wider text-gray-900">
@@ -94,7 +94,7 @@ function FeaturedArticles() {
               if (leadPost && post._id === leadPost._id) return null;
               
               return (
-                <div key={post._id} className="border-b border-gray-100 pb-8 last:border-0 last:pb-0">
+                <div key={post._id} className="border-b border-gray-100 pb-8 last:border-0 last:pb-0 ">
                   <FeaturedCard post={post} />
                 </div>
               );

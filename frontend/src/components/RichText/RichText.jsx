@@ -149,7 +149,7 @@ function QuillRichText({
             type="text"
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
-            autoComplete="shipping address-line1"
+            autoComplete=""
           />
         </div>
         <div className={Styles.uploadFile}>

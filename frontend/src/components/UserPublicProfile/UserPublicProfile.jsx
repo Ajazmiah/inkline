@@ -6,6 +6,7 @@ import Border from "../Atoms/Border/Border";
 import AuthorBylineCard from "../AuthorBylineCard/AuthorBylineCard";
 import AuthorBio from "../AuthorBio/AuthorBio";
 import UserProfileInfo from "../UserProfileInfo/UserProfileInfo";
+import ProfilePost from "../ProfilePost/ProfilePost";
 
 function UserPublicProfile() {
   const { id } = useParams();
@@ -42,14 +43,9 @@ function UserPublicProfile() {
     <div>
       <UserProfileInfo userInfo={author} />
 
-      <div className="container" style={{marginTop:'7em'}}>
-        {posts.map((post) => (
-          <>
-            <FeaturedCard post={post} />
-            <Border />
-          </>
-        ))}
-      </div>
+      <section className="mt-20 px-6">
+        <ProfilePost posts={posts} />
+      </section>
     </div>
   );
 }

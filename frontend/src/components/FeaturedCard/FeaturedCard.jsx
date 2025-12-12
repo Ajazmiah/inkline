@@ -10,20 +10,25 @@ function FeaturedCard({ post }) {
   return (
     <div
       onClick={() => handleNavigateToPost(post)}
+      className="flex max-w-[680px] mx-auto gap-4 items-start cursor-pointer"
     >
-      <div className={Styles.coverImage}>
+      {/* Image on left */}
+      <div className="flex-shrink-0 w-40 h-24 overflow-hidden rounded">
         <img
           src={post?.coverImageName || post.coverImage}
           alt={post?.alt || "cover photo of the post"}
+          className="w-full h-full object-cover"
           loading="eager"
         />
       </div>
-      <div className={Styles.postDetails}>
-        <h1 className={classNames("truncate")}>
+
+      {/* Text on right */}
+      <div className="flex-1 min-w-0">
+        <h2 className="md:text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors duration-200 truncate">
           {post.title}
-        </h1>
-        <p className={classNames("truncate")}>
-          {post.summary ? post.summary : "Summary is not available"}
+        </h2>
+        <p className="text-gray-600 break-words line-clamp-3 text-sm">
+          {post.summary || "Summary is not available"}
         </p>
       </div>
     </div>

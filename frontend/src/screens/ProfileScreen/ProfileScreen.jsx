@@ -9,6 +9,7 @@ import Image from "../../components/Image/Image";
 import UserProfileInfo from "../../components/UserProfileInfo/UserProfileInfo";
 import FeaturedCard from "../../components/FeaturedCard/FeaturedCard";
 import Border from "../../components/Atoms/Border/Border";
+import ProfilePost from "../../components/ProfilePost/ProfilePost";
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const ProfileScreen = () => {
         </div>
 
         {/* Posts / featured list */}
-        <section className="mt-8">
+        <section className="mt-20">
           {/* If no posts */}
           {!posts || posts.length === 0 ? (
             <div className="rounded-lg bg-white/60 p-8 text-center text-sm text-gray-600 shadow-sm">
@@ -62,19 +63,7 @@ const ProfileScreen = () => {
             </div>
           ) : (
             /* Responsive grid: 1 column on mobile, 2 on md, 3 on lg (adjust to taste) */
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post) => {
-                const key = post._id || post.id || post.slug || Math.random();
-                return (
-                  <div key={key} className="flex flex-col">
-                    <FeaturedCard post={post} />
-                    <div className="mt-4">
-                      <Border />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <ProfilePost posts={posts} />
           )}
         </section>
 
