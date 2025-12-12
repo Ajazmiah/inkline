@@ -11,14 +11,10 @@ import { useSelector } from "react-redux";
 const HomeScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
-  if (userInfo && !userInfo?.isVerified) {
-    return <Navigate to="/profile" replace />;
-  }
-
   return (
     <>
-      <Hero />
-      <div className=''>
+      {!userInfo && <Hero />}
+      <div className="">
         <div>
           <FeaturedArticles />
         </div>
