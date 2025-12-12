@@ -10,7 +10,6 @@ function FeaturedCard({ post }) {
   return (
     <div
       onClick={() => handleNavigateToPost(post)}
-      className={classNames(Styles.featuredCard, "flex")}
     >
       <div className={Styles.coverImage}>
         <img
@@ -20,10 +19,10 @@ function FeaturedCard({ post }) {
         />
       </div>
       <div className={Styles.postDetails}>
-        <h1 className={classNames(Styles.featuredTitle, "truncate")}>
+        <h1 className={classNames("truncate")}>
           {post.title}
         </h1>
-        <p className={classNames(Styles.summary, "truncate")}>
+        <p className={classNames("truncate")}>
           {post.summary ? post.summary : "Summary is not available"}
         </p>
       </div>

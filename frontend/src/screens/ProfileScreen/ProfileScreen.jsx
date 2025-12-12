@@ -6,11 +6,9 @@ import { Link } from "react-router-dom";
 import PostCard from "../../components/PostCard/PostCard";
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
 import Image from "../../components/Image/Image";
-import Styles from "./ProfileScreen.module.css";
 import UserProfileInfo from "../../components/UserProfileInfo/UserProfileInfo";
 import FeaturedCard from "../../components/FeaturedCard/FeaturedCard";
 import Border from "../../components/Atoms/Border/Border";
-import classNames from "classnames";
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
@@ -31,22 +29,59 @@ const ProfileScreen = () => {
     };
 
     getAllPosts();
-  }, []);
+  }, [dispatch, getPosts]);
 
   return (
-    <div>
-      <UserProfileInfo userInfo={userInfo}>
-        <UserProfileInfo.UpdateAccount />
-      </UserProfileInfo>
-      <div className={classNames("container", Styles.featured)}>
-        {posts?.map((post) => (
-          <>
-            <FeaturedCard post={post} />
-            <Border />
-          </>
-        ))}
+    <main className="min-h-screen bg-gray-50 py-8">
+      {/* Center container */}
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        {/* Profile header / info */}
+
+        {/* Allow the UserProfileInfo component to render itself.
+              Placed inside a responsive flex so it aligns nicely on wider screens. */}
+
+        <div className="min-w-0 flex-1">
+          {/* Let the existing component show name, bio, and the UpdateAccount child */}
+          <UserProfileInfo userInfo={userInfo}>
+            <UserProfileInfo.UpdateAccount />
+          </UserProfileInfo>
+        </div>
+
+        {/* Posts / featured list */}
+        <section className="mt-8">
+          {/* If no posts */}
+          {!posts || posts.length === 0 ? (
+            <div className="rounded-lg bg-white/60 p-8 text-center text-sm text-gray-600 shadow-sm">
+              <p className="mb-3">You haven't published any posts yet.</p>
+              <Link
+                to="/create"
+                className="inline-flex items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800"
+              >
+                Start Writing
+              </Link>
+            </div>
+          ) : (
+            /* Responsive grid: 1 column on mobile, 2 on md, 3 on lg (adjust to taste) */
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => {
+                const key = post._id || post.id || post.slug || Math.random();
+                return (
+                  <div key={key} className="flex flex-col">
+                    <FeaturedCard post={post} />
+                    <div className="mt-4">
+                      <Border />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </section>
+
+        {/* Optionally add a footer spacing block */}
+        <div className="mt-12" />
       </div>
-    </div>
+    </main>
   );
 };
 

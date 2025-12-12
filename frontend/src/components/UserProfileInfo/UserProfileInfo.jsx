@@ -36,12 +36,6 @@ function UserProfileInfo({ userInfo, children }) {
         <div className={Styles.profileRight}>
           <AuthorBio authorInfo={userInfo} />
           <div>
-            {/* <ul className={Styles.socials}>
-              <li>{getIcon("youtube")}</li>
-              <li>{getIcon("Fb")}</li>
-              <li>{getIcon("github")}</li>
-              <li>{getIcon("twitter")}</li>
-            </ul> */}
             {children}
           </div>
         </div>

@@ -32,6 +32,7 @@ function FeaturedArticles() {
           : await getPosts(limit).unwrap();
 
         setPosts(allPost.SignedPosts);
+        console.log("ALL POST", allPost)
         
         // Ensure the lead post is always the first one returned
         if (allPost.SignedPosts && allPost.SignedPosts.length > 0) {
