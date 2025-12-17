@@ -242,7 +242,7 @@ function Header() {
       </div>
 
       {/* Scrollable content */}
-      <div className="flex-1 overflow-y-auto px-6 py-4">
+      
         {/* Main nav */}
         <nav className="space-y-1">
           {pagesNavigation.map((item) => (
@@ -318,7 +318,7 @@ function Header() {
             </Link>
           </div>
         )}
-      </div>
+
     </div>
   </div>
 )}

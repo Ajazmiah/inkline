@@ -10,23 +10,41 @@ import { attachPresignedURLs } from "../utils/attachedSignedURL.js";
 import { optimizeImage } from "../utils/imageOptimize.js";
 import { sendMail, transporter } from "../utils/nodemailer.js";
 import { verificationToken } from "../utils/verificationCodeGenerator.js";
+import ejs from "ejs";
+import path from "path";
+
 
 const signup = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    res.status(422);
-    throw new Error(errors.errors[0].msg);
-  }
-
-  const URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.BASE_URL;
-
   const registerForm = req.body;
 
   const firstName = registerForm.firstName;
   const lastName = registerForm.lastName;
   const email = registerForm.email;
   const password = registerForm.password;
+
+  const verificationToken = Math.floor(
+    10000 + Math.random() * 90000
+  ).toString();
+
+
+  const URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.BASE_URL;
+
+  const linkToVerify = `<a href=${URL}/verify-email?token=${verificationToken}>Click here to verify your email</a>`;
+  
+  const html = await ejs.renderFile(
+    path.join(process.cwd(), "templates", "resetPassword.ejs"),
+    {
+      firstName,
+      verificationLink:`${URL}/verify-email?token=${verificationToken}`,
+      url:linkToVerify
+    }
+  );
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    res.status(422);
+    throw new Error(errors.errors[0].msg);
+  }
 
   const userExist = await userModel.findOne({ email });
 
@@ -37,9 +55,6 @@ const signup = asyncHandler(async (req, res, next) => {
     );
   }
 
-  const verificationToken = Math.floor(
-    10000 + Math.random() * 90000
-  ).toString();
 
   const user = await userModel.create({
     firstName,
@@ -66,15 +81,12 @@ const signup = asyncHandler(async (req, res, next) => {
       email: user.email,
       isVerified: user.isVerified,
     });
-    const verificationLink = `<a href=${URL}/verify-email?token=${verificationToken}>Click here to verify your email</a>`;
-
+   
     const mailOptions = {
       from: "miahajaz@gmail.com", // sender address
       to: email, // list of receivers
       subject: "Verification code sent by CodersJournal", // Subject line
-      html: `<h3> hello ${firstName}</h3>
-      <b>Click on this link to verify your email</b>
-      ${verificationLink}`,
+      html,
     };
 
     sendMail(transporter, mailOptions);

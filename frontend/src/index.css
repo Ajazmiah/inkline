@@ -215,3 +215,25 @@ p {
     /* 50px to 10rem */
   }
 }
+
+/* Additional global styles can be added here */
+@layer components {
+  .btn-round-black {
+    @apply rounded-full
+      bg-gray-900
+      px-6 py-3
+      text-sm
+      font-semibold
+      text-white
+      no-underline
+      shadow-sm
+      hover:bg-gray-700
+      hover:text-white
+      focus-visible:outline
+      focus-visible:outline-2
+      focus-visible:outline-offset-2
+      focus-visible:outline-gray-900
+      transition-all
+      duration-200;
+  }
+}

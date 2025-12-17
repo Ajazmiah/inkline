@@ -42,6 +42,7 @@ function SingleBlogScreen() {
     const fetchPost = async () => {
       try {
         const fetchedPost = await getPost({ id }).unwrap();
+        console.log(fetchedPost)
         setPost(fetchedPost);
       } catch (err) {
         if (err.status === 404) {
@@ -145,7 +146,7 @@ function SingleBlogScreen() {
                         {post._doc.tags?.[0] || "Article"}
                     </span>
                     <span className="text-sm text-gray-400">
-                        {formatDate(post?.createdAt)}
+                        {formatDate(post?._doc.createdAt)}
                     </span>
                 </div>
 
@@ -195,11 +196,6 @@ function SingleBlogScreen() {
                 />
             </div>
 
-            {/* THE CONTENT 
-                - 'prose' activates typography plugin
-                - 'prose-lg' makes text larger for reading
-                - 'font-serif' makes it feel like Medium/NYT
-            */}
             <article className="prose prose-lg prose-slate max-w-none font-serif 
                 prose-headings:font-sans prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-gray-900
                 prose-p:text-gray-700 prose-p:leading-8

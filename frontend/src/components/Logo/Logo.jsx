@@ -23,7 +23,7 @@ function Logo() {
                 }}
             >
                 <Link className={classNames(Styles.logo)} to="/">
-                    Coders<span>Journal</span>
+                    <span>Inkline.com</span>
                 </Link>
             </Typography>
         </Box>

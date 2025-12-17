@@ -50,7 +50,7 @@ const Hero = () => {
         <div className="text-center">
           {/* Main Heading */}
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Spread the knowledge of coding
+            Spread your knowledge
           </h1>
           
           {/* Sub Tagline */}
@@ -59,7 +59,7 @@ const Hero = () => {
           </p>
 
           <p className="mx-auto mt-4 max-w-xl text-base text-gray-500">
-            Join a minimalist community of developers writing about modern web development. 
+            Join a minimalist community of writers-
             No clutter, just content.
           </p>
 
@@ -67,14 +67,14 @@ const Hero = () => {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
               to="/create"
-              className="rounded-full bg-gray-900 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 transition-all duration-200"
+              className="btn-round-black text-white"
             >
               Start Writing
             </Link>
             
             <a
               href="#leadArticle"
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 transition-all duration-200"
+              className="btn-round-black bg-white text-black"
             >
               Read Articles
             </a>

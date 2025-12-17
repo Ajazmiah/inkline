@@ -55,9 +55,6 @@ function UpdateAccountScreen() {
 
       try {
         const res = await updateProfile(form).unwrap();
-
-        console.log("RES", res)
-
         toast.success("Your profile is updated");
         if (res) {
           dispatch(setCredentials(res));
@@ -157,7 +154,7 @@ function UpdateAccountScreen() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <Button type="submit">Update</Button>
+          <button type="submit" className='btn-round-black text-white'>Update</button>
         </form>
       </Container>
     </div>
