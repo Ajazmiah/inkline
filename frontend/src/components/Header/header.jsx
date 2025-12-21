@@ -195,134 +195,127 @@ function Header() {
         </div>
       </nav>
 
-{/* 5. MOBILE MENU OVERLAY */}
-{isMobileMenuOpen && (
-  <div
-    className="fixed inset-0 z-50 flex lg:hidden"
-    role="dialog"
-    aria-modal="true"
-  >
-    {/* Backdrop */}
-    <div
-      className="fixed inset-0 bg-gray-900/40 backdrop-blur-sm"
-      onClick={() => setIsMobileMenuOpen(false)}
-    />
-
-    {/* Side Panel */}
-    <div className="relative ml-auto flex h-full w-full max-w-sm flex-col bg-white shadow-2xl ring-1 ring-gray-900/10">
-      {/* Header row */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-        <Link
-          to="/"
-          className="-m-1.5 p-1.5"
-          onClick={() => setIsMobileMenuOpen(false)}
+      {/* 5. MOBILE MENU OVERLAY */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-50 flex lg:hidden"
+          role="dialog"
+          aria-modal="true"
         >
-          <Logo />
-        </Link>
-        <button
-          type="button"
-          className="-m-2.5 rounded-md p-2.5 text-gray-500 hover:text-gray-900"
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          <span className="sr-only">Close menu</span>
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
+          {/* Side Panel */}
+          <div className="fixed inset-0 z-50 flex h-screen w-screen flex-col bg-white shadow-2xl ring-1 ring-gray-900/10">
+            {/* Header */}
+            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-100 bg-white px-6 py-4">
+              <Link
+                to="/"
+                className="-m-1.5 p-1.5"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Logo />
+              </Link>
 
-      {/* Scrollable content */}
-      
-        {/* Main nav */}
-        <nav className="space-y-1">
-          {pagesNavigation.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {item.text}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Divider */}
-        <div className="my-6 h-px bg-gray-100" />
-
-        {userInfo ? (
-          <>
-            {/* Account section */}
-            <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-400">
-              My account
-            </div>
-
-            <div className="mb-4 flex items-center gap-3 rounded-lg bg-gray-50 px-3 py-2">
-              <div className="h-9 w-9 overflow-hidden rounded-full ring-1 ring-gray-900/10">
-                {userInfo.profilePicture ? (
-                  <ProfileImage imageURL={userInfo.profilePicture} />
-                ) : (
-                  <Initials author={userInfo} />
-                )}
-              </div>
-              <div className="min-w-0">
-                <p className="truncate text-sm font-medium text-gray-900">
-                  {userInfo.name}
-                </p>
-                <p className="truncate text-xs text-gray-500">
-                  {userInfo.email}
-                </p>
-              </div>
-            </div>
-
-            {/* Account links */}
-            <div className="space-y-1">
-              {userSettingMenu.map((item, index) => (
-                <Link
-                  key={index}
-                  to={item.to}
-                  className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                  onClick={() => setIsMobileMenuOpen(false)}
+              <button
+                type="button"
+                className="-m-2.5 rounded-md p-2.5 text-gray-500 hover:text-gray-900"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="sr-only">Close menu</span>
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
                 >
-                  {item.text}
-                </Link>
-              ))}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
             </div>
 
-            {/* Logout button */}
-            <button
-              onClick={logoutHandler}
-              className="mt-4 w-full rounded-lg px-3 py-2 text-left text-base font-semibold leading-7 text-red-600 hover:bg-red-50"
-            >
-              Log out
-            </button>
-          </>
-        ) : (
-          <div className="mt-4">
-            <Link
-              to="/login"
-              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Log in
-            </Link>
+            {/* Scrollable content */}
+            <div className="flex-1 overflow-y-auto px-6 py-6">
+              {/* Main nav */}
+              <nav className="space-y-1">
+                {pagesNavigation.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.text}
+                  </Link>
+                ))}
+              </nav>
+
+              {/* Divider */}
+              <div className="my-6 h-px bg-gray-100" />
+
+              {userInfo ? (
+                <>
+                  <div className="mb-4 flex items-center gap-3 rounded-lg bg-gray-50 px-3 py-2">
+                    <div className="h-9 w-9 overflow-hidden rounded-full ring-1 ring-gray-900/10">
+                      {userInfo.profilePicture ? (
+                        <ProfileImage imageURL={userInfo.profilePicture} />
+                      ) : (
+                        <Initials author={userInfo} />
+                      )}
+                    </div>
+
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-medium text-gray-900">
+                        {userInfo.name}
+                      </p>
+                      <p className="truncate text-xs text-gray-500">
+                        {userInfo.email}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Account links */}
+                  <div className="space-y-1">
+                    {userSettingMenu.map((item, index) => (
+                      <Link
+                        key={index}
+                        to={item.to}
+                        className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.text}
+                      </Link>
+                    ))}
+                    <div className="border-t border-gray-100 py-1">
+                      <button
+                        onClick={logoutHandler}
+                        className="flex w-full pl-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                      >
+                        Sign out
+                      </button>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="mt-4">
+                  <Link
+                    to="/login"
+                    className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      logoutHandler();
+                    }}
+                  >
+                    Log in
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
-        )}
-
-    </div>
-  </div>
-)}
-
+        </div>
+      )}
     </header>
   );
 }
