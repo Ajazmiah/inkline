@@ -163,7 +163,7 @@ function SingleBlogScreen() {
               <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl mb-6 leading-[1.1]">
                 {post._doc.title}
               </h1>
-              <p className="text-xl leading-relaxed text-gray-500 font-light">
+              <p className="text-sm mt-4 leading-relaxed text-gray-500 font-light">
                 {post._doc.summary}
               </p>
             </header>
@@ -182,14 +182,14 @@ function SingleBlogScreen() {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleModal("edit")}
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 transition-all"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-gray-700"
                   >
                     {getIcon("update")}{" "}
                     <span className="hidden sm:inline">Edit</span>
                   </button>
                   <button
                     onClick={() => handleModal("delete")}
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-red-600 shadow-sm ring-1 ring-inset ring-red-100 hover:bg-red-50 transition-all"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-red-600"
                   >
                     {getIcon("delete")}{" "}
                     <span className="hidden sm:inline">Delete</span>
