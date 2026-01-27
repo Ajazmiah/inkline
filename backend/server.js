@@ -19,7 +19,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5000",
-  "https://inkline.onrender.com/",
+  "https://inkline.onrender.com",
 ];
 
 const corsOptions = {
