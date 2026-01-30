@@ -37,17 +37,19 @@ app.use("/api/blog", blogRoutes);
 // --- Serve React frontend ---
 const __dirname = path.resolve(); // needed because using ES modules
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend/dist")));
+// 1. Serve static files (css, js, images) from the React build
+app.use(express.static(path.join(__dirname, "frontend/dist")));
 
-  // Send all other routes to React app
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
-  });
-}
+// 2. The "Catch-All" Route
+// This fixes the issue where refreshing "/profile" or "/forgot-password" gave a 404.
+// It tells Express: "If the route isn't an API route, send the React index.html"
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
+});
 
 // Error middleware
-app.use(errorHandler);
+// (These will now only trigger for API errors or non-GET requests that don't match)
 app.use(notFound);
+app.use(errorHandler);
 
 app.listen(port, () => console.log(`Server started on ${port}`));
