@@ -38,11 +38,11 @@ app.use("/api/blog", blogRoutes);
 const __dirname = path.resolve(); // needed because using ES modules
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
+  app.use(express.static(path.join(__dirname, "frontend/dist")));
 
   // Send all other routes to React app
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+    res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
   });
 }
 
