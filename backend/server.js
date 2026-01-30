@@ -6,16 +6,12 @@ import userRoutes from "./routes/userRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import cors from "cors";
-import ejs from "ejs";
 import path from "path";
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const port = process.env.PORT || 5000;
 const app = express();
-
 
 const allowedOrigins = [
   "http://localhost:5000",
@@ -28,24 +24,29 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
 connectDb();
 
-app.use(express.json()); // if clinets send data to user(no form)
-app.use(express.urlencoded({ extended: true })); // client sends data using HTML form or URL-encoded format
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// API routes
 app.use("/api/users", userRoutes);
 app.use("/api/blog", blogRoutes);
 
-//app.use(express.static(path.join(__dirname, "public")));
+// --- Serve React frontend ---
+const __dirname = path.resolve(); // needed because using ES modules
 
-// Set EJS as the templating engine
-// EJS setup
-app.set("view engine", "ejs");
-app.set("views", path.join(process.cwd(), "templates"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
 
+  // Send all other routes to React app
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  });
+}
+
+// Error middleware
 app.use(errorHandler);
 app.use(notFound);
 
