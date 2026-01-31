@@ -44,7 +44,7 @@ app.use(express.static(path.join(__dirname, "frontend/dist")));
 // This fixes the issue where refreshing "/profile" or "/forgot-password" gave a 404.
 // It tells Express: "If the route isn't an API route, send the React index.html"
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
 
 // Error middleware
