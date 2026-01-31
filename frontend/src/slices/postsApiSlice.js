@@ -6,7 +6,7 @@ dotenv.config();
 const POSTS_URL =
   process.env.NODE_ENV === "development"
     ? "/api/blog"
-    : "https://coderjournal-backend.onrender.com/api/blog";
+    : "https://inkline.onrender.com/api/blog";
 
 console.log("URL", POSTS_URL);
 

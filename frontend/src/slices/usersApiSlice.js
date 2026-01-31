@@ -7,7 +7,7 @@ dotenv.config();
 const USERS_URL =
   process.env.NODE_ENV === "development"
     ? "/api/users"
-    : "https://coderjournal-backend.onrender.com/api/users";
+    : "https://inkline.onrender.com/api/users";
 
 console.log("ENV",  USERS_URL);
 
